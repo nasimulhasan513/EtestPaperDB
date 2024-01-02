@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  db-backup:  
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: db-backup
+    volumes:
+      - /db_backup:/backup
+
+  file-server:
+    build: 
+      context: .
+      dockerfile: file-server/Dockerfile
+    container_name: file-server
+    ports:
+      - 8080:80
+    volumes:
+      - /db_backup:/srv

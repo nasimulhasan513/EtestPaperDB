@@ -1,0 +1,14 @@
+#!/command/with-contenv bash
+
+source /assets/functions/00-container
+prepare_service single
+prepare_service 03-monitoring
+PROCESS_NAME="db-backup"
+output_off
+
+bootstrap_variables
+sanity_test
+setup_mode
+create_zabbix dbbackup
+
+liftoff
